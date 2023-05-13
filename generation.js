@@ -43,7 +43,8 @@ formulaire.addEventListener("submit", (event) => {
 					dispo.classList.add("jaune");
 				} else {
 					dispo.classList.add("rouge");
-				}
+                }
+                verifieVictoire();
 				TOUR.change();
 			}
 		});

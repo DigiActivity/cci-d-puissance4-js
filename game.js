@@ -64,14 +64,6 @@ let TOUR = {
 	},
 };
 
-// Réalisons le jeu :
-
-// Au clic sur une colonne, on place une pièce (si il y a de la place)
-// si il n'y a pas de place, on envoie un message dans la console
-
-// Etape 1 : Sélectionner toutes les colonnes du plateau
-// Etape 2 : Pour chaque colonne, attacher à celle-ci un EventListener "click"
-// Etape 3 : L'action exécutée place une pièce ou écrit dans la console
 
 let toutesMesColonnes = document.querySelectorAll("div.colonne");
 
@@ -84,8 +76,35 @@ toutesMesColonnes.forEach((colonne) => {
 				dispo.classList.add("jaune");
 			} else {
 				dispo.classList.add("rouge");
-			}
+            }
+            verifieVictoire()
 			TOUR.change();
 		}
 	});
 });
+
+
+function verifieVictoire () {
+    console.log("Je vérifie la victoire");
+    
+    // 1. Déterminer la coordonnée de notre pion (modifier caseDispo)
+    // 2. Lister toutes les cases pour travailler avec des coordonnées
+
+	/* VERIFICATIONS */
+
+	// VERTICAL
+        // on compte le nombre de pièces adjacentes de la même couleur au dessus
+
+        // on compte le nombre de pièces adjacentes de la même couleur en dessous
+
+        // si le total des pièces est >= 4 alors VICTOIRE
+
+    // HORIZONTAL
+        // on compte le nombre de pièces adjacentes de la même couleur à droite
+
+        // on compte le nombre de pièces adjacentes de la même couleur à gauche
+
+        // si le total des pièces est >= 4 alors VICTOIRE
+    
+    // ...
+}
