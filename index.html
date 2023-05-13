@@ -12,6 +12,7 @@
 			background-color: blue;
 			padding: 20px;
 			display: flex;
+			border-radius: 25px;
 		}
 
 		.case{
@@ -28,6 +29,10 @@
 
 		.jaune{
 			background-color: gold;
+		}
+
+		.rouge, .jaune{
+			box-shadow: inset -5px -5px 5px rgba(0, 0, 0, 0.5) , inset 3px 3px 5px white;
 		}
 
 		.colonne:hover{
@@ -50,6 +55,8 @@
 	<input type="number" name="hauteur" id="hauteur" min="1" value="6">
 	<button type="submit">Valider</button>
 </form>
+
+<h2>Au tour des <span id="tour-visuel" style="color: gold;">jaunes</span></h2>
 
 <div class="plateau">
 	
