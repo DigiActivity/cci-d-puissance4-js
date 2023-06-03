@@ -77,34 +77,63 @@ toutesMesColonnes.forEach((colonne) => {
 			} else {
 				dispo.classList.add("rouge");
             }
-            verifieVictoire()
+            verifieVictoire(colonne, dispo)
 			TOUR.change();
 		}
 	});
 });
 
 
-function verifieVictoire () {
+function verifieVictoire (colonneActuelle, piece) {
     console.log("Je vérifie la victoire");
-    
-    // 1. Déterminer la coordonnée de notre pion (modifier caseDispo)
-    // 2. Lister toutes les cases pour travailler avec des coordonnées
+	console.log(colonneActuelle)
+	console.log(piece)
 
-	/* VERIFICATIONS */
+	/* Pour vérifier la victoire j'ai besoin de la position de ma pièce dans la colonne */
 
-	// VERTICAL
-        // on compte le nombre de pièces adjacentes de la même couleur au dessus
+	// Etape 1, je vais chercher toutes les pièces pour pouvoir retrouver la bonne
+	const toutesLesPieces = colonneActuelle.querySelectorAll('div.case')
 
-        // on compte le nombre de pièces adjacentes de la même couleur en dessous
+	// Etape 2, je commence la recherche. Je prévois
+	let position = -1;
+	
+	toutesLesPieces.forEach((unePiece, positionPiece) => {
+		if (unePiece === piece) {
+			position = positionPiece
+			return
+		}
+	})
+	console.log('Ma pièce est la la position ' + position)
 
-        // si le total des pièces est >= 4 alors VICTOIRE
+	/* commencer à vérifier les valeurs adjacentes */
 
-    // HORIZONTAL
-        // on compte le nombre de pièces adjacentes de la même couleur à droite
+	// Vérifions les cases à Position + N
+	const nbDeCaseApres = toutesLesPieces.length - (position + 1)
+	console.log("Il y a " + nbDeCaseApres + " cases après notre cellule")
 
-        // on compte le nombre de pièces adjacentes de la même couleur à gauche
+	let compteur = 1
 
-        // si le total des pièces est >= 4 alors VICTOIRE
-    
-    // ...
+	let casesApresVerifiees = 0
+
+	while (casesApresVerifiees < nbDeCaseApres) {
+		casesApresVerifiees++
+		
+		const positionAVerifier = position + casesApresVerifiees
+		console.log("On vérifie la case " + positionAVerifier)
+
+		if (piece.className === toutesLesPieces[positionAVerifier].className) {
+			compteur ++
+		} else {
+			break
+		}
+	}
+
+	if (compteur >= 4) {
+		//victoire
+		if (TOUR.jaune) {
+			alert("Victoire des jaunes")
+		} else {
+			alert("Victoire des rouges")
+		}
+	}
 }
